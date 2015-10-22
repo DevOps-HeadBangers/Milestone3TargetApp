@@ -1,6 +1,10 @@
 {
   "name": "file_upload",
   "version": "0.0.1",
+  "scripts": {
+    "lint": "eslint -f checkstyle index.js > checkstyle-result.xml",
+    "test": "istanbul cover test.js > test.tap && istanbul report clover"
+  },
   "dependencies": {
     "express": "~4.10.2",
     "multer": "~0.1.6"
