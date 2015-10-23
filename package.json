@@ -2,7 +2,7 @@
   "name": "file_upload",
   "version": "0.0.1",
   "scripts": {
-    "lint": "eslint -f checkstyle index.js > checkstyle-result.xml",
+    "lint": "eslint -f checkstyle server.js > checkstyle-result.xml",
     "test": "istanbul cover test.js > test.tap && istanbul report clover"
   },
   "dependencies": {

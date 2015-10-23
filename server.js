@@ -4,7 +4,8 @@ var app        		=       express();
 var upload 			= 		multer({ dest: './uploads/'});
 
 app.use(multer({ dest: './uploads/',
-	rename: function (fieldname, filename) {
+	rename: function (fieldname, filename) 
+	{
 		return filename+Date.now();
 	},
 	onFileUploadStart: function (file) {
@@ -20,12 +21,15 @@ app.get('/',function(req,res){
 });
 
 app.post('/api/photo',function(req,res){
+	
 	upload(req,res,function(err) {
 		if(err) {
 			return res.end("Error uploading file.");
 		}
 		res.end("File is uploaded");
-	});
-});
+	}
+	);
+}
+);
 
 module.exports = app;
