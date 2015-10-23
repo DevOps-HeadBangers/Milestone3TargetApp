@@ -1,11 +1,11 @@
-var express = require("express");
-var multer = require('multer');
-var app = express();
-var upload = multer({
+var express = require("express"); // include express module
+var multer = require('multer'); // include multer module
+var app = express(); // get express object
+var upload = multer({  
     dest: './uploads/'
 });
 
-app.use(multer({
+app.use(multer({ 
     dest: './uploads/',
     rename: function(fieldname, filename) {
         return filename + Date.now();
@@ -18,10 +18,13 @@ app.use(multer({
     }
 }));
 
-app.get('/', function(req, res) {
+
+// call get method
+app.get('/', function(req, res) {    
     res.sendFile(__dirname + "/index.html");
 });
 
+// call post method
 app.post('/api/photo', function(req, res) {
 
     upload(req, res, function(err) {
