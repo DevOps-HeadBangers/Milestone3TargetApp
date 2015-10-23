@@ -25,7 +25,7 @@ function main() {
 }
 
 var callback = function(err, res) {
-    t.same(res.status, 200, 'Success');
+    t.same(res.status, 200, 'Test complete');
     t.end();
 }
 
@@ -33,11 +33,17 @@ var content = '';
 
 function generateAPITestCases(funcName, params) {
 
-    for (var i = 0; i < params.length; i++) {
-        var param = params[i];
-        if (funcName === 'get') {
-            content = content + "\ntest('File upload test cases', function(t) { request(app).{0}('{1}').expect(200).end({2});});".format(funcName, param, callback);
-        }
+    // for (var i = 0; i < params.length; i++) {
+    //     var param = params[i];
+    //     if (funcName === 'get') {
+    //         content = content + "\ntest('File upload test cases', function(t) { request(app).{0}('{1}').expect(200).end({2});});".format(funcName, param, callback);
+    //     }
+    // }
+
+    if (funcName === 'get') {
+        content = content + "\ntest('File upload test cases', function(t) { request(app).{0}('{1}').expect(200).end({2});});".format(funcName, params, callback);
+    } else if (funcName === 'post') {
+        content = content + "\ntest('File upload test cases', function(t) { request(app).{0}('{1}').expect(200).end({2});});".format(funcName, params, callback);
     }
 
     fs.appendFile('test.js', content, function(err) {
@@ -67,14 +73,36 @@ function constraints(filePath) {
 
                     var funcName = child.callee.property.name;
 
-                    var params = [];
+                    // var params = [];
 
-                    params.push(child.arguments[0].value);
-                    params.push('/auth/photos');
+                    // params.push(child.arguments[0].value);
+                    // params.push('/auth/photos');
+
+                    var params = child.arguments[0].value;
 
                     generateAPITestCases(funcName, params);
 
                 }
+
+                if (child.type == "CallExpression" &&
+                    child.callee.property &&
+                    child.callee.property.name == "post") {
+
+                    var funcName = child.callee.property.name;
+
+                    // var params = [];
+
+                    // params.push(child.arguments[0].value);
+                    // params.push('/auth/photos');
+
+                    var params = child.arguments[0].value;
+
+                    generateAPITestCases(funcName, params);
+
+                }
+
+
+
             });
         }
     });
