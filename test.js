@@ -17,3 +17,11 @@ test('File upload test cases', function(t) {
             t.end();
         });
 });
+test('File upload test cases', function(t) { request(app).get('/').expect(200).end(function (err, res) {
+    t.same(res.status, 200, 'Success');
+    t.end();
+});});
+test('File upload test cases', function(t) { request(app).get('/auth/photos').expect(200).end(function (err, res) {
+    t.same(res.status, 200, 'Success');
+    t.end();
+});});
