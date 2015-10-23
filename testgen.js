@@ -1,6 +1,4 @@
 // code to generate test cases
-
-var ListIterator = require('list-iterator');
 var esprima = require("esprima");
 var options = {
     tokens: true,
