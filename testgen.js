@@ -66,6 +66,7 @@ function constraints(filePath) {
             // Check for expressions using argument.
             traverse(node, function(child) {
 
+                var params = '';
 
                 if (child.type == "CallExpression" &&
                     child.callee.property &&
@@ -78,26 +79,11 @@ function constraints(filePath) {
                     // params.push(child.arguments[0].value);
                     // params.push('/auth/photos');
 
-                    var params = child.arguments[0].value;
+                    params = child.arguments[0].value;
 
                     generateAPITestCases(funcName, params);
 
-                }
-
-                if (child.type == "CallExpression" &&
-                    child.callee.property &&
-                    child.callee.property.name == "post") {
-
-                    var funcName = child.callee.property.name;
-
-                    // var params = [];
-
-                    // params.push(child.arguments[0].value);
-                    // params.push('/auth/photos');
-
-                    var params = child.arguments[0].value;
-
-                    generateAPITestCases(funcName, params);
+                    generateAPITestCases('post', params);
 
                 }
 

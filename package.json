@@ -13,6 +13,7 @@
   "devDependencies": {
     "eslint": "^0.10.0",
     "esprima": "^2.7.0",
+    "istanbul": "^0.4.0",
     "list-iterator": "^1.0.1",
     "node-dir": "^0.1.10",
     "sloc": "^0.1.9",
