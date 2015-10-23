@@ -21,7 +21,7 @@ exec('git diff-index --name-status HEAD -- | cut -c3-', function(err, stdout, st
         }
 
         fs.readFile(fileName, 'utf8', function(err, data) {
-            if (err) throw err;
+            // if (err) throw err;
             var digitalOceanToken = findDigitalOceanToken(String(data));
             var awsToken = findAwsToken(String(data));
             if (awsToken != null || digitalOceanToken != null) {
