@@ -1,4 +1,3 @@
-var fs = require('fs');
 var sloc = require('sloc');
 var dir = require('node-dir');
 
