@@ -1,6 +1,7 @@
 {
   "name": "file_upload",
   "version": "0.0.1",
+  "main": "server.js",
   "scripts": {
     "lint": "eslint -f checkstyle server.js > checkstyle-result.xml",
     "test": "istanbul cover test.js > test.tap && istanbul report clover"
@@ -10,11 +11,10 @@
     "multer": "~0.1.6"
   },
   "devDependencies": {
+    "eslint": "^0.10.0",
     "esprima": "^2.7.0",
     "list-iterator": "^1.0.1",
-    "random-js": "^1.0.8",
     "supertest": "^1.1.0",
-    "tape": "^4.2.2",
-    "underscore": "^1.8.3"
+    "tape": "^4.2.2"
   }
 }
