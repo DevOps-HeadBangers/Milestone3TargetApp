@@ -25,6 +25,7 @@ function main() {
 var callback = function(err, res) {
     t.same(res.status, 200, 'Test complete');
     t.end();
+    app.close()
 }
 
 var content = '';
