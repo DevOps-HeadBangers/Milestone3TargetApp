@@ -1,4 +1,4 @@
-ssh root@192.241.255.167 <<EOF
+ssh root@$1 <<EOF
   cd ~/File-upload-in-Node
   git pull
   npm install --production
