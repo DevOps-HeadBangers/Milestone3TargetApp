@@ -26,6 +26,12 @@ build/Release
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
 coverage
+img
 .DS_Store
 test.tap
 checkstyle-result.xml
+*.js~
+*.json~
+*.html~
+*.gitignore~
+
