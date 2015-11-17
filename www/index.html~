@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.js"></script>
+    
+	<script>
+	  var socket = io('http://localhost:4005');
+	  socket.on("heartbeat", function(client) 
+	    {
+		console.log(JSON.stringify(client));
+		
+		document.getElementById('name').innerHTML = client.name;
+		document.getElementById('highestUploads').innerHTML = client.highestUploads;
+		document.getElementById('numberOfUploads').innerHTML = client.numberOfUploads;
+		/*viewModel.updateClient( 
+		{
+		    name:client.name, 
+		    highestUploads:client.highestUploads, 
+		    numberOfUploads: client.numberOfUpload
+		});*/
+	    });
+	</script>
+
+    <style type="text/css" >
+    .foo {   
+    float: left;
+    border-width: 1px;
+    border-style: solid;
+    border-color: "orange";
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
+  </head>
+  <body>
+
+    <table id="statusTable"  class="foo" cellspacing="0" width="100%" border="1px">
+        <thead>
+            <tr  align="left" >
+                <th>Name</th>
+                <th>Highest Upload Size</th>
+                <th>Number of Uploads (per 5 secs)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr align="left">
+              <td id="name"></td>
+              <td id="highestUploads"></td>
+              <td id="numberOfUploads"></td>
+            </tr>
+        </tbody>
+    </table>
+  </body>
+</html>
