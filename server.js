@@ -81,7 +81,7 @@ app.post('/api/photo', function(req, res) {
     });
 });
 
-var server = app.listen(5003, function () {
+var server = app.listen(3000, function () {
   var port = server.address().port;
   console.log('Example app listening at port %s', port);
 });
@@ -89,7 +89,6 @@ var server = app.listen(5003, function () {
 
 setInterval( function () 
 {
-	console.log("Sending...");
 	io.sockets.emit('heartbeat', 
 	{ 
         name: "Image Upload Status", highestUploads: highestUploadSize, numberOfUploads: numberOfUploads

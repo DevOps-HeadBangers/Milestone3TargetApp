@@ -30,4 +30,8 @@ img
 .DS_Store
 test.tap
 checkstyle-result.xml
+*.js~
+*.json~
+*.html~
+*.gitignore~
 
