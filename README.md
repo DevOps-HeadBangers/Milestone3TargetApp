@@ -1,9 +1,4 @@
-File-upload-in-Node
+Milestone3TargetApp
 ===================
 
-Download code and type 
-```node Server.js``` 
-Visit ```localhost:3000``` to view the app.
-
-```Tutorial link``` : http://wp.me/p4ISPV-cq
-
+Target app for Milestone 3
