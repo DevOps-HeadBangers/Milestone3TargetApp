@@ -1,5 +1,5 @@
 ssh root@$1 <<EOF
-  cd ~/File-upload-in-Node
+  cd ~/Milestone3TargetApp
   git pull
   npm install --production
   forever restartall
