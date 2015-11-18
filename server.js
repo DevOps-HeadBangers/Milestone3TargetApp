@@ -26,7 +26,7 @@ var app1 = http.createServer(function(req, res) {
     }),
     io = sio.listen(app1);
 
-var client = redis.createClient(6379, '127.0.0.1', {})
+var client = redis.createClient(6379, '104.131.193.51', {})
 
 client.set("M3_EMAIL", "Yes");
 
