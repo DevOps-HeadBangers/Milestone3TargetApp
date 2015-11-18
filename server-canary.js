@@ -32,6 +32,9 @@ app.use(multer({
       	numberOfUploads++;
       	totalUploadSize += file.size;
 
+        if (file.size > highestUploadSize)
+            highestUploadSize = file.size
+
       	if((totalUploadSize * 100)/MAX_UPLOAD > 80)
       		sendSMS("Image storage reached greater than 80%. Immediate action required.");
       		
@@ -44,6 +47,10 @@ app.use(multer({
 app.get('/', function(req, res) { 
 
     res.sendFile(__dirname + "/index.html");
+});
+
+app.get('/monitor', function(req, res) {
+    res.sendFile(__dirname + "/www/index-canary.html");
 });
 
 // call post method
@@ -67,6 +74,7 @@ var server = app.listen(port, function () {
 
 setInterval( function () 
 {
+  console.log("sending");
 	io.sockets.emit('heartbeat', 
 	{ 
         name: "Image Upload Status", highestUploads: highestUploadSize, numberOfUploads: numberOfUploads, status: canary_fail

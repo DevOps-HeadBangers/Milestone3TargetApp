@@ -16,6 +16,7 @@ var totalUploadSize = 0;
 var MAX_UPLOAD = 10000000;
 var refDate = 0;
 bigUploadCount = 0;
+canary_fail = false;
 
 var app1 = http.createServer(function(req, res) {
         res.writeHead(200, {
@@ -44,14 +45,14 @@ app.use(multer({
     },
     onFileUploadComplete: function(file) {
         numberOfUploads++;
-        totalUploadSize += file.size;
+        totalUploadSize += file.size;    
+
+        if (file.size > highestUploadSize)
+            highestUploadSize = file.size
 
         if (file.size > 1000000) {
             console.log("Encountered big upload!");
             bigUploadCount++;
-
-            if (file.size > highestUploadSize)
-                highestUploadSize = file.size
 
             if (refDate == 0)
                 refDate = new Date();
@@ -93,6 +94,11 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + "/index.html");
 });
 
+app.get('/monitor', function(req, res) {
+    res.sendFile(__dirname + "/www/index.html");
+});
+
+
 // call post method
 app.post('/api/photo', function(req, res) {
 
@@ -114,12 +120,14 @@ setInterval(function() {
     io.sockets.emit('heartbeat', {
         name: "Image Upload Status",
         highestUploads: highestUploadSize,
-        numberOfUploads: numberOfUploads
+        numberOfUploads: numberOfUploads,
+        status: canary_fail
     });
 
 }, 2000);
 
 app1.listen(4005);
+
 
 function sendSMS(message) {
 

@@ -5,13 +5,16 @@
     
 	<script>
 	  var socket = io('http://localhost:4006');
-	  io.socket.on("heartbeat", function(client) 
-	    {
-		console.log(JSON.stringify(client));
-		
-		document.getElementById('name').innerHTML = client.name;
-		document.getElementById('highestUploads').innerHTML = client.highestUploads;
-		document.getElementById('numberOfUploads').innerHTML = client.numberOfUploads;
+	  socket.on("heartbeat", function(client) 
+	   {
+      		console.log(JSON.stringify(client));
+      		
+      		document.getElementById('name').innerHTML = client.name;
+      		document.getElementById('highestUploads').innerHTML = client.highestUploads;
+      		document.getElementById('numberOfUploads').innerHTML = client.numberOfUploads;
+          var is_failing = client.status;
+
+          document.getElementById('status').innerHTML = is_failing == false? "Working" : "Failed";
 		/*viewModel.updateClient( 
 		{
 		    name:client.name, 
@@ -40,6 +43,7 @@
                 <th>Name</th>
                 <th>Highest Upload Size</th>
                 <th>Number of Uploads</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -47,6 +51,7 @@
               <td id="name"></td>
               <td id="highestUploads"></td>
               <td id="numberOfUploads"></td>
+              <td id="status"></td>
             </tr>
         </tbody>
     </table>
