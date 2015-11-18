@@ -16,5 +16,6 @@ test('File upload test cases', function(t) {
             t.same(res.status, 200, 'should upload file');
             t.end();
             app.close();
+            process.exit();
         });
 });
