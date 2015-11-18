@@ -28,6 +28,7 @@ build/Release
 node_modules
 coverage
 img
+uploads
 .DS_Store
 test.tap
 checkstyle-result.xml

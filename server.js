@@ -7,6 +7,8 @@ var upload = multer({
     dest: './uploads/'
 });
 var SMSClient = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+var nodemailer = require('nodemailer');
+var redis = require('redis')
 
 var highestUploadSize = 0;
 var numberOfUploads = 0;
@@ -22,6 +24,15 @@ var app1 = http.createServer(function(req, res) {
         res.end();
     }),
     io = sio.listen(app1);
+
+var client = redis.createClient(6379, '127.0.0.1', {})
+
+var mailOptions = {
+    from: 'Fred Foo ✔ <' + process.env.M3_GMAIL + '>',
+    to: process.env.M3_GMAIL,
+    subject: 'Flicker Milestone 3 Update For - ✔',
+    html: '<b>New image has been uploaded!!! ✔</b>'
+};
 
 app.use(multer({
     dest: './uploads/',
@@ -61,6 +72,17 @@ app.use(multer({
         if ((totalUploadSize * 100) / MAX_UPLOAD > 80)
             sendSMS("Image storage reached greater than 80%. Immediate action required.");
 
+        client.get("M3_EMAIL", function(err, reply) {
+
+		    console.log("Email sent: " + reply);
+		    if(reply.toUpperCase() === "YES"){
+		    	mailOptions.subject = 'Flicker Milestone 3 Update For - ' + file.originalname;
+		        mailOptions.html = '<b>'+ file.originalname + ' image has been uploaded!!! ✔</b>';
+		        emailUpdate();
+		    }
+		});
+
+        
         console.log(file.fieldname + ' uploaded to  ' + file.path)
     }
 }));
@@ -116,6 +138,25 @@ function sendSMS(message) {
         }
     });
 
+}
+
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: process.env.M3_GMAIL,
+        pass: process.env.M3_PASS
+    }
+});
+
+
+function emailUpdate(){
+	transporter.sendMail(mailOptions, function(error, info){
+	    if(error){
+	        return console.log(error);
+	    }
+	    console.log('Message sent: ' + info.response);
+
+	});
 }
 
 module.exports = server;
