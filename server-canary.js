@@ -64,7 +64,7 @@ app.post('/api/photo', function(req, res) {
     });
 });
 
-var port = process.argv[2];
+var port = 3001;
 
 var server = app.listen(port, function () {
   var port = server.address().port;
@@ -74,8 +74,7 @@ var server = app.listen(port, function () {
 
 setInterval( function () 
 {
-  console.log("sending");
-	io.sockets.emit('heartbeat', 
+  io.sockets.emit('heartbeat', 
 	{ 
         name: "Image Upload Status", highestUploads: highestUploadSize, numberOfUploads: numberOfUploads, status: canary_fail
    });
