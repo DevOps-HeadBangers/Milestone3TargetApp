@@ -2,11 +2,10 @@
 <html>
   <head>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.js"></script>
-	
-  <script type="text/javascript" src="http://l2.io/ip.js?var=myip"></script>
-                                                      
-  <script>
-	  var socket = io('http://' + myip + ':4005');
+    
+	<script>
+    var myip = window.location.hostname;
+	  var socket = io('http://'+ myip +':4005');
 	  socket.on("heartbeat", function(client) 
 	    {
       		console.log(JSON.stringify(client));
@@ -14,9 +13,9 @@
       		document.getElementById('name').innerHTML = client.name;
       		document.getElementById('highestUploads').innerHTML = client.highestUploads;
       		document.getElementById('numberOfUploads').innerHTML = client.numberOfUploads;
-		var is_failing = client.status;
+      		var is_failing = client.status;
 
-		document.getElementById('status').innerHTML = is_failing == false? "Working" : "Failed";
+      		document.getElementById('status').innerHTML = is_failing == false? "Working" : "Failed";
 	    });
 
 	</script>
