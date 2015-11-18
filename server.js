@@ -28,6 +28,8 @@ var app1 = http.createServer(function(req, res) {
 
 var client = redis.createClient(6379, '127.0.0.1', {})
 
+client.set("M3_EMAIL", "Yes");
+
 var mailOptions = {
     from: 'Fred Foo ✔ <' + process.env.M3_GMAIL + '>',
     to: process.env.M3_GMAIL,
