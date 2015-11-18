@@ -2,9 +2,11 @@
 <html>
   <head>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.js"></script>
-    
-	<script>
-	  var socket = io('http://localhost:4005');
+	
+  <script type="text/javascript" src="http://l2.io/ip.js?var=myip"></script>
+                                                      
+  <script>
+	  var socket = io('http://' + myip + ':4005');
 	  socket.on("heartbeat", function(client) 
 	    {
       		console.log(JSON.stringify(client));
@@ -12,16 +14,11 @@
       		document.getElementById('name').innerHTML = client.name;
       		document.getElementById('highestUploads').innerHTML = client.highestUploads;
       		document.getElementById('numberOfUploads').innerHTML = client.numberOfUploads;
-          var is_failing = client.status;
+		var is_failing = client.status;
 
-          document.getElementById('status').innerHTML = is_failing == false? "Working" : "Failed";
-		/*viewModel.updateClient( 
-		{
-		    name:client.name, 
-		    highestUploads:client.highestUploads, 
-		    numberOfUploads: client.numberOfUpload
-		});*/
+		document.getElementById('status').innerHTML = is_failing == false? "Working" : "Failed";
 	    });
+
 	</script>
 
     <style type="text/css" >
