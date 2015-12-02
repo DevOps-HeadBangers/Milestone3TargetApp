@@ -28,7 +28,7 @@ test('File upload test cases1', function(t) {
         .end(function(err, res) {
             // t.error(err, 'No error');
             t.same(res.status, 200, 'should upload file');
-            result = status.res;
+            result = res.status;
             t.end();
             //app.close();
             //process.exit();
