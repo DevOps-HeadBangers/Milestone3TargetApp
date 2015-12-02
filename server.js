@@ -9,6 +9,7 @@ var upload = multer({
 var SMSClient = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 var nodemailer = require('nodemailer');
 var redis = require('redis')
+var fs = require('fs')
 
 var highestUploadSize = 0;
 var numberOfUploads = 0;
@@ -100,8 +101,13 @@ app.get('/monitor', function(req, res) {
     res.sendFile(__dirname + "/www/index.html");
 });
 
+
 app.get('/flame', function(req, res) {
-    res.sendFile(__dirname + "/www/flame.html");
+    var img = fs.readFile('./display.svg', function(err, data) {
+    res.writeHead(200, {'content-type':'image/svg'});
+    res.end(data);
+
+    });
 });
 
 
