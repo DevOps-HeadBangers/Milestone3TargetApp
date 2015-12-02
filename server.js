@@ -28,7 +28,7 @@ var app1 = http.createServer(function(req, res) {
 
 var client = redis.createClient(6379, process.argv[2], {})
 
-client.set("M3_EMAIL", "Yes");
+client.set("M3_EMAIL", "No");
 
 var mailOptions = {
     from: 'Fred Foo ✔ <' + process.env.M3_GMAIL + '>',
@@ -62,7 +62,7 @@ app.use(multer({
                 now = new Date();
                 if (((now.getTime() - refDate.getTime()) / 1000 < 60)) {
                     if (bigUploadCount > 2) {
-                        sendSMS("File Size greater than 1MB uploaded under 1 minute!");
+                        //sendSMS("File Size greater than 1MB uploaded under 1 minute!");
                         bigUploadCount = 0;
                         refDate = new Date();
                     }
@@ -73,7 +73,7 @@ app.use(multer({
         }
 
         if ((totalUploadSize * 100) / MAX_UPLOAD > 80)
-            sendSMS("Image storage reached greater than 80%. Immediate action required.");
+            //sendSMS("Image storage reached greater than 80%. Immediate action required.");
 
         client.get("M3_EMAIL", function(err, reply) {
 

@@ -35,3 +35,6 @@ checkstyle-result.xml
 *.html~
 *.gitignore~
 *.data
+*.svg
+uploads1
+*.nodestacks01
