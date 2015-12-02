@@ -1,14 +1,15 @@
-	var sys = require('sys')
+var sys = require('sys')
 var exec = require('child_process').exec;
 
 var child;
 
 //get this pid from redis
-pid = process.argv.slice(2);
+pid = process.argv[2];
+fileN = process.argv[3];
 var archive_filename = -1;
 
 console.log('pid: ' + pid)
-var cmd1_sleep_time = 60;
+var cmd1_sleep_time = 30;
 var cmd1 = "sudo chown root: /tmp/perf-"+ pid +".map";
 function start(){
 	child = exec(cmd1, function (error, stdout, stderr){
@@ -22,7 +23,7 @@ function start(){
 		exec(cmd2, function (error, stdout, stderr){
 
 			console.log(stdout);
-			exec("mv *.svg Flame/arch/*.svg");
+			//exec("find . -iname '*.svg' -type f | xargs -I '{}' mv {} ./Flame/arch/");
 			if(archive_filename != -1){
 				exec("mv "+archive_filename+" arch/"+archive_filename);
 			}
@@ -63,7 +64,7 @@ function actual_generation(){
 						console.log(stdout4);
 						setTimeout(function(){
 
-							exec("cp "+filename+" display.svg");
+							exec("cp "+filename+" "+fileN);
 							exec("mv out.nodestacks01 Flame/out.nodestacks01");
 							exec("mv perf.data Flame/perf.data");
 							exec("rm v8.log");

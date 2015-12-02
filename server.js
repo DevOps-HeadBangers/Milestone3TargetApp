@@ -102,11 +102,25 @@ app.get('/monitor', function(req, res) {
 });
 
 
-app.get('/flame', function(req, res) {
-    var img = fs.readFile('./display.svg', function(err, data) {
+app.get('/test1', function(req, res) {
+    var img = fs.readFile('./test1.svg', function(err, data) {
     res.writeHead(200, {'content-type':'image/svg'});
     res.end(data);
+    });
+});
 
+app.get('/test2', function(req, res) {
+    var img = fs.readFile('./test2.svg', function(err, data) {
+    res.writeHead(200, {'content-type':'image/svg'});
+    res.end(data);
+    });
+});
+
+
+app.get('/test3', function(req, res) {
+    var img = fs.readFile('./test3.svg', function(err, data) {
+    res.writeHead(200, {'content-type':'image/svg'});
+    res.end(data);
     });
 });
 

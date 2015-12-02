@@ -38,3 +38,6 @@ checkstyle-result.xml
 *.svg
 uploads1
 *.nodestacks01
+FlameGraph
+Flame/FlameGraph
+Flame/out.nodestacks01

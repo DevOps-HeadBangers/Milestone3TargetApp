@@ -8,7 +8,7 @@ var exec = require('child_process').exec;
 
 var pid = process.pid;
 console.log("pid: " + pid);
-cmd = "sudo node Flame/profile_with_flamegraphs.js " + pid;
+cmd = "sudo node Flame/flame_monkey.js " + pid + " test1.svg";
 
 console.log(cmd);
 exec(cmd, function (error, stdout, stderr) {
