@@ -5,7 +5,7 @@ var request = require('supertest');
 var app = require('./server');
 var sys = require('sys');
 var exec = require('child_process').exec;
-
+var result;
 var pid = process.pid;
 console.log("pid: " + pid);
 cmd = "sudo node Flame/flame_monkey.js " + pid + " test1.svg";
@@ -130,6 +130,7 @@ test('File upload test cases5', function(t) {
         .end(function(err, res) {
             // t.error(err, 'No error');
             t.same(res.status, 200, 'should upload file');
+            //result = res.status;
             t.end();
             //app.close();
             //process.exit();
@@ -162,8 +163,22 @@ test('File upload test cases7', function(t) {
         .end(function(err, res) {
             // t.error(err, 'No error');
             t.same(res.status, 200, 'should upload file');
+            result = res.status;
             t.end();
             //app.close();
             //process.exit();
         });
+        
+        setTimeout(function(){
+
+            if(result == 200)
+            {
+                app.close();
+                process.exit();
+            }
+            else
+                console.log("Not Ok!");
+
+        }, 33000);
+
 });
