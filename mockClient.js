@@ -23,4 +23,4 @@ setInterval(function(){
     imgID = Math.floor((Math.random() * 6) + 1);
     imageName = 'img/'+imgID+'.jpg';
     uploadMockImage(imageName); 
-}, 3000);
+}, 12000);
