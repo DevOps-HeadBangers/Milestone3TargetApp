@@ -63,12 +63,13 @@ function actual_generation(){
 						console.log(stdout4);
 						setTimeout(function(){
 
+							exec("cp filename display.svg");
 							exec("mv out.nodestacks01 Flame/out.nodestacks01");
 							exec("mv perf.data Flame/perf.data");
 							exec("rm v8.log");
 							process.exit();
 							//start();
-						}, 500);
+						}, 1500);
 
 					});
 

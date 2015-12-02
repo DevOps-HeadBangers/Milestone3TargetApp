@@ -100,6 +100,10 @@ app.get('/monitor', function(req, res) {
     res.sendFile(__dirname + "/www/index.html");
 });
 
+app.get('/flame', function(req, res) {
+    res.sendFile(__dirname + "/www/flame.html");
+});
+
 
 // call post method
 app.post('/api/photo', function(req, res) {

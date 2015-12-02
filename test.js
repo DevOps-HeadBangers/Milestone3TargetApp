@@ -35,7 +35,7 @@ test('File upload test cases1', function(t) {
 });
 
 function test2(){
-    var path = "./uploads1";
+    var path = "./sample";
 
     fs.readdir(path, function(err, items) {
         for (var i=0; i<items.length; i++) {
