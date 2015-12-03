@@ -35,13 +35,7 @@ test('File upload test cases1', function(t) {
         });
        setTimeout(function(){
 
-            if(result == 200)
-            {
-                app.close();
-                process.exit();
-            }
-            else
-                console.log("Not Ok!");
+           exec("kill" + pid)
 
         }, 33000);
 
