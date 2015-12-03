@@ -1,3 +1,10 @@
 node --perf-basic-prof test2.js &
 sleep 36s
-nodejs server.js
+forever start server.js
+sleep 40s
+forever stopall
+node --perf-basic-prof test2.js &
+sleep 40s
+forever start server.js
+sleep 40s
+forever stopall
