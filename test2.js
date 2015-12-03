@@ -33,7 +33,7 @@ test('File upload test cases1', function(t) {
             //app.close();
             //process.exit();
         });
-      /*  setTimeout(function(){
+       setTimeout(function(){
 
             if(result == 200)
             {
@@ -43,6 +43,6 @@ test('File upload test cases1', function(t) {
             else
                 console.log("Not Ok!");
 
-        }, 33000);*/
+        }, 33000);
 
 });
