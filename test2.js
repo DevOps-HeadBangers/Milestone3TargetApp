@@ -33,11 +33,11 @@ test('File upload test cases1', function(t) {
             //app.close();
             //process.exit();
         });
+});
+
        setTimeout(function(){
 
-           exec("kill" + pid)
-           // app.close();
+           exec("kill " + pid)
+            app.close();
             process.exit();
-        }, 33000);
-
-});
+        }, 35000);
