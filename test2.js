@@ -34,7 +34,7 @@ exec(cmd, function (error, stdout, stderr) {
             //app.close();
             //process.exit();
         });
-        setTimeout(function(){
+        /*setTimeout(function(){
 
            exec("kill " + pid, function(error, stdout, stderr){
                app.close();
@@ -43,7 +43,7 @@ exec(cmd, function (error, stdout, stderr) {
             
             
             
-        }, 35000);
+        }, 35000);*/
     });
 
 
