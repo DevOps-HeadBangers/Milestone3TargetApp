@@ -31,8 +31,8 @@ exec(cmd, function (error, stdout, stderr) {
             t.same(res.status, 200, 'should upload file');
             result = res.status;
             t.end();
-            //app.close();
-            //process.exit();
+            app.close();
+            process.exit();
         });
         /*setTimeout(function(){
 
