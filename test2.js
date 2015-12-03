@@ -36,7 +36,7 @@ test('File upload test cases1', function(t) {
        setTimeout(function(){
 
            exec("kill" + pid)
-            app.close();
+           // app.close();
             process.exit();
         }, 33000);
 
