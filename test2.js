@@ -39,5 +39,5 @@ test('File upload test cases1', function(t) {
 
            exec("kill " + pid)
             app.close();
-            process.exit();
+            process.exit(1);
         }, 35000);
