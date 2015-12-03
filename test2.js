@@ -16,9 +16,8 @@ exec(cmd, function (error, stdout, stderr) {
     if (error !== null) {
         console.log('exec error: ' + error);
     }
-});
-
-test('File upload test cases1', function(t) {
+    
+    test('File upload test cases1', function(t) {
     request(app)
         .post('/api/photo')
         .field('filename', 'test file')
@@ -35,10 +34,17 @@ test('File upload test cases1', function(t) {
         });
         setTimeout(function(){
 
-           exec("kill " + pid)
-            //app.close();
-            process.exit();
+           exec("kill " + pid, function(error, stdout, stderr){
+               app.close();
+                process.exit();   
+           })
+            
+            
+            
         }, 35000);
+    });
+
+    
 });
 
        
