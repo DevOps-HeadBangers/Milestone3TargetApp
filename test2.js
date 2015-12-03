@@ -17,6 +17,8 @@ exec(cmd, function (error, stdout, stderr) {
         console.log('exec error: ' + error);
     }
     
+});
+
     test('File upload test cases1', function(t) {
     request(app)
         .post('/api/photo')
@@ -44,7 +46,5 @@ exec(cmd, function (error, stdout, stderr) {
         }, 35000);
     });
 
-    
-});
 
        
